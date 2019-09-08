@@ -1,6 +1,7 @@
 const io = require('socket.io')();
 const SSHClient = require('ssh2').Client;
 const conn = new SSHClient();
+import {sshCreds} from "./src/constants/credentials";
 
 
 io.on('connection', function(client) {
@@ -65,9 +66,9 @@ io.on('connection', function(client) {
             console.log(errorMessage);
             client.emit('data', errorMessage);
         }).connect({
-            host: 'host_or_ip',
-            username: 'user_name',
-            password: 'pass_word',
+            host: sshCreds.host,
+            username: sshCreds.username,
+            password: sshCreds.password,
 
         });
     });
